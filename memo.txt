@@ -1,0 +1,18 @@
+・ローカル実行コマンド
+BE
+node server.js
+
+FE
+npm start
+
+
+
+・npm実行したコマンドメモ
+BE
+npm init -y
+npm install express pg cors
+
+FE
+npx web zip-address-search
+cd zip-address-search
+npm install axios
