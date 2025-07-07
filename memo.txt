@@ -13,6 +13,6 @@ npm init -y
 npm install express pg cors
 
 FE
-npx web zip-address-search
-cd zip-address-search
+npx create-react-app web
+cd web
 npm install axios
