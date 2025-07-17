@@ -7,10 +7,10 @@ app.use(cors());
 
 const pool = new Pool({
   user: 'postgres',
-  host: 'localhost',  // 適宜書き換え
-  database: 'post_number_app',
-  password: 'admin', // 適宜
-  port: 5433,
+  host: 'post-app-db-instance-1.cbmekq0gy9bp.ap-northeast-1.rds.amazonaws.com',  // 適宜書き換え
+  database: 'post_app_db', // 適宜書き換え
+  password: 'fWRUIWQcmIscZANWR4rr', // 適宜
+  port: 5432,
 });
 
 // 郵便番号から住所検索
