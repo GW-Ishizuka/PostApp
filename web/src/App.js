@@ -85,6 +85,7 @@ function App() {
 
   const debouncedZipcode = useDebounce(zipcode, 500);
   const debouncedAddress = useDebounce(address, 500);
+  const apiBase = 'http://43.206.192.39:4000';
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,7 +97,7 @@ function App() {
           return;
         }
         try {
-          const res = await axios.get('http://localhost:4000/api/search/address', {
+          const res = await axios.get(`http://${apiBase}/api/search/address`, {
             params: { zipcode: debouncedZipcode, page, limit: 10 },
           });
           setResults(res.data.results);
@@ -120,7 +121,7 @@ function App() {
           // 半角カタカナに正規化
           const normalized = normalizeKana(decomposed);
 
-          const res = await axios.get('http://localhost:4000/api/search/zipcode', {
+          const res = await axios.get(`http://${apiBase}/api/search/zipcode`, {
             params: { address: normalized, page, limit: 10 },
           });
           setResults(res.data.results);
