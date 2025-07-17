@@ -13,6 +13,17 @@ const pool = new Pool({
   port: 5432,
 });
 
+async function testConnection() {
+  try {
+    const res = await pool.query('SELECT NOW()');
+    console.log('DB connection OK:', res.rows[0]);
+  } catch (error) {
+    console.error('DB connection error:', error);
+  }
+}
+
+testConnection();
+
 // 郵便番号から住所検索
 app.get('/api/search/address', async (req, res) => {
   const { zipcode, page = 1, limit = 10 } = req.query;
