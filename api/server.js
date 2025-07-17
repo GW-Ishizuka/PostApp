@@ -92,6 +92,11 @@ app.get('/api/search/zipcode', async (req, res) => {
   }
 });
 
+// ヘルスチェック用
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 const port = 4000;
 app.listen(port, () => {
   console.log(`Postal code API server listening at http://localhost:${port}`);
