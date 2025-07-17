@@ -97,7 +97,7 @@ function App() {
           return;
         }
         try {
-          const res = await axios.get(`http://${apiBase}/api/search/address`, {
+          const res = await axios.get(`${apiBase}/api/search/address`, {
             params: { zipcode: debouncedZipcode, page, limit: 10 },
           });
           setResults(res.data.results);
@@ -121,7 +121,7 @@ function App() {
           // 半角カタカナに正規化
           const normalized = normalizeKana(decomposed);
 
-          const res = await axios.get(`http://${apiBase}/api/search/zipcode`, {
+          const res = await axios.get(`${apiBase}/api/search/zipcode`, {
             params: { address: normalized, page, limit: 10 },
           });
           setResults(res.data.results);
