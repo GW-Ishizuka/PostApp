@@ -85,7 +85,7 @@ function App() {
 
   const debouncedZipcode = useDebounce(zipcode, 500);
   const debouncedAddress = useDebounce(address, 500);
-  const apiBase = 'http://43.206.192.39:4000';
+  const apiBase = 'https://43.206.192.39:4000';
 
   useEffect(() => {
     const fetchData = async () => {
