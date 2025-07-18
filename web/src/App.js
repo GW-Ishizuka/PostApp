@@ -85,7 +85,7 @@ function App() {
 
   const debouncedZipcode = useDebounce(zipcode, 500);
   const debouncedAddress = useDebounce(address, 500);
-  const apiBase = 'https://gw-wise-iot-team-b.click';
+  const apiBase = '';
 
   useEffect(() => {
     const fetchData = async () => {
