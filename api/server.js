@@ -7,7 +7,7 @@ app.use(cors());
 
 const pool = new Pool({
   user: 'postgres',
-  host: 'post-app-db.cluster-cbmekq0gy9bp.ap-northeast-1.rds.amazonaws.com',  // 適宜書き換え
+  host: 'post-app-db-cluster.cluster-cbmekq0gy9bp.ap-northeast-1.rds.amazonaws.com',  // 適宜書き換え
   database: 'post_app_db', // 適宜書き換え
   password: 'fWRUIWQcmIscZANWR4rr', // 適宜
   port: 5432,
