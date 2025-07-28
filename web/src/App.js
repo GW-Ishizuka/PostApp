@@ -153,93 +153,94 @@ function App() {
           fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
         }}
     >
-    <div style={{ maxWidth: 600, margin: '0 auto', backgroundColor: 'rgba(255,255,255,0.85)', padding: '2rem', borderRadius: '10px' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '1rem', color: '#0070f3' }}>郵便番号・住所リアルタイム検索</h1>
-
-      <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
-        <label style={{ cursor: 'pointer' }}>
+      <div style={{ maxWidth: 600, margin: '0 auto', backgroundColor: 'rgba(255,255,255,0.85)', padding: '2rem', borderRadius: '10px' }}>
+        <h1 style={{ textAlign: 'center', marginBottom: '1rem', color: '#0070f3' }}>郵便番号・住所リアルタイム検索</h1>
+  
+        <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
+          <label style={{ cursor: 'pointer' }}>
+            <input
+              type="radio"
+              checked={mode === 'zip'}
+              onChange={() => {
+                setMode('zip');
+                setZipcode('');
+                setAddress('');
+                setResults([]);
+                setPage(1);
+                setTotalPages(1);
+              }}
+            />
+            郵便番号から住所
+          </label>
+          <label style={{ cursor: 'pointer' }}>
+            <input
+              type="radio"
+              checked={mode === 'address'}
+              onChange={() => {
+                setMode('address');
+                setZipcode('');
+                setAddress('');
+                setResults([]);
+                setPage(1);
+                setTotalPages(1);
+              }}
+            />
+            住所から郵便番号
+          </label>
+        </div>
+  
+        {mode === 'zip' ? (
           <input
-            type="radio"
-            checked={mode === 'zip'}
-            onChange={() => {
-              setMode('zip');
-              setZipcode('');
-              setAddress('');
-              setResults([]);
-              setPage(1);
-              setTotalPages(1);
+            type="text"
+            placeholder="郵便番号（例: 1000001）"
+            value={zipcode}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (/^\d{0,7}$/.test(val)) {
+                setZipcode(val);
+                setPage(1);
+              }
             }}
+            style={{ width: '100%', padding: 12, fontSize: 18, borderRadius: 6, border: '1px solid #ccc' }}
           />
-          郵便番号から住所
-        </label>
-        <label style={{ cursor: 'pointer' }}>
-          <input
-            type="radio"
-            checked={mode === 'address'}
-            onChange={() => {
-              setMode('address');
-              setZipcode('');
-              setAddress('');
-              setResults([]);
-              setPage(1);
-              setTotalPages(1);
-            }}
-          />
-          住所から郵便番号
-        </label>
-      </div>
-
-      {mode === 'zip' ? (
-        <input
-          type="text"
-          placeholder="郵便番号（例: 1000001）"
-          value={zipcode}
-          onChange={(e) => {
-            const val = e.target.value;
-            if (/^\d{0,7}$/.test(val)) {
-              setZipcode(val);
-              setPage(1);
-            }
-          }}
-          style={{ width: '100%', padding: 12, fontSize: 18, borderRadius: 6, border: '1px solid #ccc' }}
-        />
-      ) : (
-        <input
-          type="text"
-          placeholder="住所（例: とうきょう、千代田区など）"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          style={{ width: '100%', padding: 12, fontSize: 18, borderRadius: 6, border: '1px solid #ccc' }}
-        />
-      )}
-
-      <div style={{ marginTop: 24 }}>
-        <h2 style={{ borderBottom: '2px solid #0070f3', paddingBottom: 4, color: '#0070f3' }}>検索結果</h2>
-        {results.length === 0 ? (
-          <p style={{ fontStyle: 'italic', color: '#888' }}>結果がありません</p>
         ) : (
-          <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-            {results.map((r, i) => (
-              <li key={i} style={{ padding: '8px 12px', borderBottom: '1px solid #eee' }}>
-                {`${r.zip} ${r.pref}${r.city}${r.town}`}
-              </li>
-            ))}
-          </ul>
+          <input
+            type="text"
+            placeholder="住所（例: とうきょう、千代田区など）"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            style={{ width: '100%', padding: 12, fontSize: 18, borderRadius: 6, border: '1px solid #ccc' }}
+          />
         )}
-
-        {totalPages > 1 && (
-          <div style={{ marginTop: 16, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 12 }}>
-            <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1}>
-              前へ
-            </button>
-            <span>
-              {page} / {totalPages}
-            </span>
-            <button onClick={() => setPage((p) => Math.min(p + 1, totalPages))} disabled={page === totalPages}>
-              次へ
-            </button>
-          </div>
-        )}
+  
+        <div style={{ marginTop: 24 }}>
+          <h2 style={{ borderBottom: '2px solid #0070f3', paddingBottom: 4, color: '#0070f3' }}>検索結果</h2>
+          {results.length === 0 ? (
+            <p style={{ fontStyle: 'italic', color: '#888' }}>結果がありません</p>
+          ) : (
+            <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+              {results.map((r, i) => (
+                <li key={i} style={{ padding: '8px 12px', borderBottom: '1px solid #eee' }}>
+                  {`${r.zip} ${r.pref}${r.city}${r.town}`}
+                </li>
+              ))}
+            </ul>
+          )}
+  
+          {totalPages > 1 && (
+            <div style={{ marginTop: 16, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 12 }}>
+              <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1}>
+                前へ
+              </button>
+              <span>
+                {page} / {totalPages}
+              </span>
+              <button onClick={() => setPage((p) => Math.min(p + 1, totalPages))} disabled={page === totalPages}>
+                次へ
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
