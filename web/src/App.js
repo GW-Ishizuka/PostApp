@@ -143,7 +143,7 @@ function App() {
   return (
     <div
         style={{
-          backgroundImage: "url('image/DSC_0722.webp')",
+          backgroundImage: "url('./image/DSC_0722.webp')",
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center center',
