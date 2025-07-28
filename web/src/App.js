@@ -141,7 +141,19 @@ function App() {
   }, [mode, debouncedZipcode, debouncedAddress]);
 
   return (
-    <div style={{ maxWidth: 600, margin: '2rem auto', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
+    <div
+        style={{
+          backgroundImage: "url('image/DSC_0722.webp')",
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+          minHeight: '100vh',
+          padding: '2rem',
+          boxSizing: 'border-box',
+          fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+        }}
+    >
+    <div style={{ maxWidth: 600, margin: '0 auto', backgroundColor: 'rgba(255,255,255,0.85)', padding: '2rem', borderRadius: '10px' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '1rem', color: '#0070f3' }}>郵便番号・住所リアルタイム検索</h1>
 
       <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
